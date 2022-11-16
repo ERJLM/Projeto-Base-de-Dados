@@ -5,22 +5,33 @@ CREATE TABLE COMPANY (
   `Name` varchar(255) NOT NULL,
   `IndustryId` int(11),
   `Funds Raised(in Millions)` int(11) NOT NULL,
-  `StageId` int(11),
+  `StageId` int(11) ,
   `LocationId` int(11) ,
   `CountryId` int(11),
-   PRIMARY KEY (`CompanyId`);
-   
+   PRIMARY KEY (`CompanyId`),
+   KEY `IndustryId` (`IndustyId`),
+   KEY `StageId` (`StageId`),
+   KEY `LocationId` (`LocationID`),
+   KEY `CountryId` (`CountryID`),
+   CONSTRAINT `company_ibfk_1` FOREIGN KEY (`IndustryId`) REFERENCES `INDUSTRY` (`IndustyId`) ON UPDATE CASCADE,
+   CONSTRAINT `company_ibfk_2` FOREIGN KEY (`StageId`) REFERENCES `STAGE` (`StageId`) ON UPDATE CASCADE,
+   CONSTRAINT `company_ibfk_3` FOREIGN KEY (`LocationId`) REFERENCES `LOCATION` (`LocationId`) ON UPDATE CASCADE,
+   CONSTRAINT `company_ibfk_4` FOREIGN KEY (`CountryId`) REFERENCES `COUNTRY` (`CountryId`) ON UPDATE CASCADE
   )
 
 
 DROP TABLE IF EXISTS `LAYOFF`;
 
 CREATE TABLE LAYOFF(
-  `LayoffId` int(11) AUTO_INCREMENT;
-  `CompanyId` int(11) FOREIGN KEY;
-  `WorkersLaid` int(11) NOT NULL;
-  `Percentage` float(11,2) NOT NULL;
-   `Date` DATE NOT NULL;
+  `LayoffId` int(11) AUTO_INCREMENT,
+  `CompanyId` int(11),
+  `LocationId` int(11) ,
+  `WorkersLaid` int(11) NOT NULL,
+  `Percentage` float(2,6) NOT NULL,
+   `Date` DATE NOT NULL,
+   PRIMARY KEY (`LayoffId`),
+   CONSTRAINT `company_ibfk_1` FOREIGN KEY (`CompanyId`) REFERENCES `COMPANY` (`CompanyId`) ON UPDATE CASCADE
+   CONSTRAINT `company_ibfk_2` FOREIGN KEY (`LocationId`) REFERENCES `LOCATION` (`LocationId`) ON UPDATE CASCADE,
   )
   
    DROP TABLE IF EXISTS `COUNTRY`;
@@ -38,7 +49,7 @@ CREATE TABLE LOCATION (
   `Name` varchar(255) NOT NULL,
   `CountryId` int(11),
    PRIMARY KEY (`LocationId`),
-   
+   CONSTRAINT `company_ibfk_1` FOREIGN KEY (`CountryId`) REFERENCES `COUNTRY` (`CountryId`) ON UPDATE CASCADE
   )
   
    DROP TABLE IF EXISTS `STAGE`;
@@ -47,4 +58,12 @@ CREATE TABLE STAGE (
   `StageId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
    PRIMARY KEY (`StageId`),
+  )
+
+DROP TABLE IF EXISTS `INDUSTRY`;
+
+CREATE TABLE INDUSTRY (
+  `IndustryId` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) NOT NULL,
+   PRIMARY KEY (`IndustryId`),
   )
