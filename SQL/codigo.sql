@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `LAYOFF`;
 CREATE TABLE LAYOFF(
   `LayoffId` int(11) AUTO_INCREMENT;
   `CompanyId` int(11) FOREIGN KEY;
-  `Workers Laid` int(11) NOT NULL;
+  `WorkersLaid` int(11) NOT NULL;
   `Percentage` float(11,2) NOT NULL;
    `Date` DATE NOT NULL;
   )
