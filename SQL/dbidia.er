@@ -1,4 +1,4 @@
-COMPANY(_CompanyId_, Name, IndustryId, FundsRaised(in Million), StageId, LocationId, CountryId)
+COMPANY(_CompanyId_, Name, IndustryId, FundsRaised, StageId, LocationId, CountryId)
 
 LAYOFF(_LayoffId_, CompanyId, LocationId, WorkersLaid, Percentage, Date)
 
@@ -10,15 +10,15 @@ STAGE(_StageId_, Name)
 
 INDUSTRY(_IndustryId_, Name)
 
-COMPANY --- 1 --- <HAS> === N === LAYOFF
+COMPANY --- 1 --- <MAKES> === N === LAYOFF
 
-COMPANY === N === <HAS> --- 1 --- COUNTRY
+COMPANY === N === <OPERATES> --- M --- COUNTRY
 
-COMPANY === N === <HAS> --- 1 --- LOCATION
+COMPANY === N === <HEADQUARTERED> --- M --- LOCATION
 
-LOCATION === N === <HAS> --- 1 --- COUNTRY
+COUNTRY === 1 === <HAS> === N === LOCATION
 
-COMPANY === N === <HAS> --- 1 --- STAGE
+COMPANY === N === <IS_IN> --- 1 --- STAGE
 
-COMPANY === N === <HAS> --- 1 --- INDUSTRY
+COMPANY === N === <WORKS_IN> === M === INDUSTRY
 
