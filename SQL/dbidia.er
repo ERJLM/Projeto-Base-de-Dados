@@ -1,0 +1,24 @@
+COMPANY(_CompanyId_, Name, IndustryId, FundsRaised(in Million), StageId, LocationId, CountryId)
+
+LAYOFF(_LayoffId_, CompanyId, LocationId, WorkersLaid, Percentage, Date)
+
+COUNTRY(_CountryId_, Name)
+
+LOCATION(_LocationId_, Name)
+
+STAGE(_StageId_, Name)
+
+INDUSTRY(_IndustryId_, Name)
+
+COMPANY --- 1 --- <HAS> === N === LAYOFF
+
+COMPANY === N === <HAS> --- 1 --- COUNTRY
+
+COMPANY === N === <HAS> --- 1 --- LOCATION
+
+LOCATION === N === <HAS> --- 1 --- COUNTRY
+
+COMPANY === N === <HAS> --- 1 --- STAGE
+
+COMPANY === N === <HAS> --- 1 --- INDUSTRY
+
