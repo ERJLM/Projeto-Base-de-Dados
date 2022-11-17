@@ -4,7 +4,7 @@ CREATE TABLE COMPANY (
   `CompanyId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
   `IndustryId` int(11),
-  `FundsRaised` int(11) NOT NULL,
+  `FundsRaised` float(11,4) NOT NULL,
   `StageId` int(11) ,
   `LocationId` int(11) ,
   `CountryId` int(11),
@@ -27,7 +27,7 @@ CREATE TABLE LAYOFF(
   `CompanyId` int(11),
   `LocationId` int(11) ,
   `WorkersLaid` int(11) NOT NULL,
-  `Percentage` float(2,6) NOT NULL,
+  `Percentage` float(1,6) NOT NULL,
    `Date` DATE NOT NULL,
    PRIMARY KEY (`LayoffId`),
    CONSTRAINT `company_ibfk_1` FOREIGN KEY (`CompanyId`) REFERENCES `COMPANY` (`CompanyId`) ON UPDATE CASCADE
