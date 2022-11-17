@@ -4,7 +4,7 @@ CREATE TABLE COMPANY (
   `CompanyId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
   `IndustryId` int(11),
-  `FundsRaised(in Millions)` int(11) NOT NULL,
+  `FundsRaised(` int(11) NOT NULL,
   `StageId` int(11) ,
   `LocationId` int(11) ,
   `CountryId` int(11),
