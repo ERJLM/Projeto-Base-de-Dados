@@ -12,11 +12,9 @@ CREATE TABLE COMPANY (
    KEY `IndustryId` (`IndustyId`),
    KEY `StageId` (`StageId`),
    KEY `LocationId` (`LocationID`),
-   KEY `CountryId` (`CountryID`),
    CONSTRAINT `company_ibfk_1` FOREIGN KEY (`IndustryId`) REFERENCES `INDUSTRY` (`IndustyId`) ON UPDATE CASCADE,
    CONSTRAINT `company_ibfk_2` FOREIGN KEY (`StageId`) REFERENCES `STAGE` (`StageId`) ON UPDATE CASCADE,
-   CONSTRAINT `company_ibfk_3` FOREIGN KEY (`LocationId`) REFERENCES `LOCATION` (`LocationId`) ON UPDATE CASCADE,
-   CONSTRAINT `company_ibfk_4` FOREIGN KEY (`CountryId`) REFERENCES `COUNTRY` (`CountryId`) ON UPDATE CASCADE
+   CONSTRAINT `company_ibfk_3` FOREIGN KEY (`LocationId`) REFERENCES `LOCATION` (`LocationId`) ON UPDATE CASCADE
   )
 
 
