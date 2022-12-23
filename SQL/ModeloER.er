@@ -1,0 +1,22 @@
+COMPANY(_CompanyId_, Name)
+
+BRANCH(_BranchId_)
+
+LAYOFF(_LayoffId_, FundsRaised, WorkersLaid, Percentage, Date)
+
+COUNTRY(_CountryId_, Name)
+
+LOCATION(_LocationId_, Name)
+
+INDUSTRY(_IndustryId_, Name)
+
+BRANCH --- 1 --- <MAKES> === N === LAYOFF
+
+BRANCH === N === <OPERATES> --- 1 --- LOCATION
+
+COUNTRY === 1 === <HAS> === N === LOCATION
+
+COMPANY === N === <WORKS_IN> === M === INDUSTRY
+
+COMPANY === 1 === <OWNS> === N === BRANCH
+
