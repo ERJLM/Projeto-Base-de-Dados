@@ -16,13 +16,15 @@ _IndustryId_ --> INDUSTRY.IndustryId
 table BRANCH
 (
 _BranchId_,
+Headquarter
 CompanyId --> COMPANY.CompanyId, 
 LocationId --> LOCATION.LocationId
 )
 
 table LAYOFF
 (
-_LayoffId_, 
+_LayoffId_,
+Name, 
 BranchId --> BRANCH.BranchId, 
 FundsRaised,
 WorkersLaid, 
