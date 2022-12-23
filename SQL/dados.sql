@@ -1314,6 +1314,7 @@ CREATE TABLE IF NOT EXISTS LOCATION (
     `location` VARCHAR(16) CHARACTER SET utf8,
     `country` VARCHAR(20) CHARACTER SET utf8
 );
+
 INSERT INTO LOCATION(Name, CountryId)
 VALUES
     ('SF Bay Area', SELECT CountryId FROM COUNTRY WHERE Name = 'United States'),
@@ -1470,3 +1471,34 @@ VALUES
     ('Sacramento',SELECT CountryId FROM COUNTRY WHERE Name = 'United States'),
     ('Charlotte',SELECT CountryId FROM COUNTRY WHERE Name = 'United States'),
     ('Tampa Bay',SELECT CountryId FROM COUNTRY WHERE Name = 'United States');
+    
+INSERT INTO INDUSTRY(Name) 
+VALUES
+   ('Aerospace'),
+   ('Construction'),
+   ('Consumer'),
+   ('Crypto'),
+   ('Data'),
+   ('Education'),
+   ('Energy'),
+   ('Finance'),
+   ('Fitness'),
+   ('Food'),
+   ('Healthcare'),
+   ('HR'),
+   ('Industry'),
+   ('Infrastuture'),
+   ('Legal'),
+   ('Logistics'),
+   ('Marketing'),
+   ('Media'),
+   ('Other'),
+   ('Product'),
+   ('Real Estate'),
+   ('Recruiting'),
+   ('Retail'),
+   ('Sales'),
+   ('Security'),
+   ('Support'),
+   ('Transportation'),
+   ('Travel');
