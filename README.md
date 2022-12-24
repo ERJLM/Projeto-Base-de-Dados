@@ -18,3 +18,9 @@ Tendo Python 3 e pip instalados, deve instalar as bibliotecas Python `Flask`, `P
 pip3 install --user Flask==1.1.4 PyMySQL==1.0.2 cryptography==36.0.0
 ``` 
 (em README da app base)
+
+## Serviço MySQL (se necessário)
+terminal aparte
+```
+sudo service mysql start
+``` 
