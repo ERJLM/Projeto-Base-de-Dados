@@ -10,7 +10,7 @@ APP = Flask(__name__)
 @APP.route('/')
 def index():
     # TODO
-    return render_template('index.html',message='Hello World!')
+    return render_template('index.html',message='People in Movement.')
 
 # TODO 
 # ...
