@@ -32,3 +32,12 @@ e depois...
 ```
 source tabelas.sql
 ``` 
+finalmente...
+```
+source dados.sql
+``` 
+
+## Servidor
+```
+python3 server.py
+``` 
