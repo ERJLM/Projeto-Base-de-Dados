@@ -20,7 +20,15 @@ pip3 install --user Flask==1.1.4 PyMySQL==1.0.2 cryptography==36.0.0
 (em README da app base)
 
 ## Serviço MySQL (se necessário)
-terminal aparte
+terminal aparte (notar localizacoes)
 ```
 sudo service mysql start
+``` 
+depois...
+```
+sudo mysql
+``` 
+e depois...
+```
+source tabelas.sql
 ``` 
