@@ -24,7 +24,7 @@ VALUES
 INSERT INTO BRANCH(CompanyId,Headquarter,LocationId)
 VALUES
     ((SELECT CompanyId FROM COMPANY WHERE Name='99'),
-    1,
+    0,
     (SELECT LocationId FROM LOCATION WHERE Name='Sao Paulo')
     );
 
