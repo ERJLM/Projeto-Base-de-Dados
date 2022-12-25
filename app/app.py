@@ -15,4 +15,8 @@ def index():
 
 @APP.route('/about.html')
 def about():
-    return render_template('about.html',message='About Us')
+    return render_template('about.html')
+
+@APP.route('/database.html')
+def database():
+    return render_template('database.html')
