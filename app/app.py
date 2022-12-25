@@ -9,8 +9,10 @@ APP = Flask(__name__)
 # Start page
 @APP.route('/')
 def index():
-    # TODO
-    return render_template('index.html',message='People in Movement.')
+    lots=list(db.execute("SELECT COUNT(*) FROM LAYOFF"))
+    many=list(db.execute("SELECT SUM(WorkersLaid) FROM LAYOFF"))
+    return render_template('index.html',message='People in Movement.',lots=lots[0].get('COUNT(*)'),many=many[0].get('SUM(WorkersLaid)'))
 
-# TODO 
-# ...
+@APP.route('/about.html')
+def about():
+    return render_template('about.html',message='About Us')
