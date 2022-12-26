@@ -19,4 +19,7 @@ def about():
 
 @APP.route('/database.html')
 def database():
-    return render_template('database.html')
+    layoff=list(db.execute("SELECT COUNT(*) FROM LAYOFF"))
+    company=list(db.execute("SELECT COUNT(*) FROM COMPANY"))
+    industry=list(db.execute("SELECT COUNT(*) FROM INDUSTRY"))
+    return render_template('database.html',company=company[0].get('COUNT(*)'),layoff=layoff[0].get('COUNT(*)'),industry=industry[0].get('COUNT(*)'))
