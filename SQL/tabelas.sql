@@ -36,10 +36,7 @@ DROP TABLE IF EXISTS `COMPANY`;
 CREATE TABLE COMPANY (
   `CompanyId` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) NOT NULL,
-  `IndustryId` int(11)  NOT NULL,
-   PRIMARY KEY (`CompanyId`),
-   KEY `IndustryId` (`IndustryId`),
-   CONSTRAINT `company_ibfk_1` FOREIGN KEY (`IndustryId`) REFERENCES `INDUSTRY` (`IndustryId`) ON UPDATE CASCADE  
+   PRIMARY KEY (`CompanyId`)
   );
 
 DROP TABLE IF EXISTS `COMPANY_INDUSTRY`;
