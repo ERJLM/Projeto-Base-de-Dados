@@ -54,7 +54,6 @@ DROP TABLE IF EXISTS `BRANCH`;
 
 CREATE TABLE BRANCH (
   `BranchId` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) NOT NULL,
   `Headquarter` bit NOT NULL DEFAULT (0),
   `CompanyId` int(11),
   `LocationId` int(11),
