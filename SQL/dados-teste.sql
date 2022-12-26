@@ -3,14 +3,14 @@
 -- COMPANY_INDUSTRY OBJETIVO FICAR IGUAL A ISTO
 INSERT INTO COMPANY_INDUSTRY(CompanyId, IndustryId)
 VALUES 
-    ((SELECT CompanyId FROM COMPANY WHERE Name='99'),(SELECT IndustryId FROM INDUSTRY WHERE Name='Transportation'));
+    ((SELECT CompanyId FROM COMPANY WHERE Name='99'),(SELECT IndustryId FROM INDUSTRY WHERE Name='Transportation')),
     -- [...]
 
 -- TRANSFORMAR A TABELA ABAIXO PARA IGUAL À DE CIMA
 
-INSERT INTO COMPANY(Name, IndustryId, LocationId)
+INSERT INTO COMPANY_INDUSTRY(CompanyId, IndustryId)
 VALUES 
-    ('99','Transportation','Sao Paulo'),
+    ((SELECT CompanyId FROM COMPANY WHERE Name='99'),(SELECT IndustryId FROM INDUSTRY WHERE Name='Transportation')),
     ('Included Health','Healthcare','SF Bay Area'),
     ('100 Thieves','Consumer','Los Angeles'),
     ('10X Genomics','Healthcare','SF Bay Area'),
