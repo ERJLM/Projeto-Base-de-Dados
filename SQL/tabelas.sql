@@ -72,7 +72,7 @@ CREATE TABLE LAYOFF(
   `BranchId` int(11) NOT NULL,
   `FundsRaised` int(11) NOT NULL,
   `WorkersLaid` int(11) NOT NULL,
-  `Percentage` float(2,2) NOT NULL,
+  `Percentage` float(6) NOT NULL,
    `Date` DATE NOT NULL,
    PRIMARY KEY (`LayoffId`),
    KEY `BranchId` (`BranchId`),
