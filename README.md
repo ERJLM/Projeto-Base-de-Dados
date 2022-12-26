@@ -41,3 +41,7 @@ source dados.sql
 ```
 python3 server.py
 ``` 
+no browser colocar
+```
+http://127.0.0.1:9000/
+```
