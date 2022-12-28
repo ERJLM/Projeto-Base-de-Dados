@@ -10,6 +10,7 @@
     <th scope="col"><b>LayoffId</b></th>
     <th scope="col"><b>BranchId</b></th>
     <th scope="col"><b>WorkersLaid</b></th>
+    <th scope="col"><b>FundsRaised (million $)</b></th>
     <th scope="col"><b>Percentage</b></th>
     <th scope="col"><b>Date</b></th>
    </tr>
@@ -19,6 +20,7 @@
       <th scope="row"><a href="/layoff/{{ layoff.LayoffId }}">{{ layoff.LayoffId }}</a></th>
       <td>{{ layoff.BranchId }}</td>
       <td>{{ layoff.WorkersLaid }}</td>
+      <td>{{ layoff.FundsRaised }}</td>
       <td>{{ layoff.Percentage }}</td>
       <td>{{ layoff.Date }}</td>
     </tr>

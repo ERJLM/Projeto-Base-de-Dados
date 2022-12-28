@@ -4993,4 +4993,4 @@ INSERT INTO LAYOFF(BranchId, WorkersLaid, Percentage, Date, FundsRaised) VALUES
 ((SELECT BranchId FROM BRANCH WHERE CompanyId = (SELECT CompanyId FROM COMPANY WHERE Name = 'HopSkipDrive') AND LocationId = (SELECT LocationId FROM LOCATION WHERE Name ='Los Angeles'                 )), 8    , 0.1   ,'2020-03-13', 45),
 ((SELECT BranchId FROM BRANCH WHERE CompanyId = (SELECT CompanyId FROM COMPANY WHERE Name = 'Panda Squad') AND LocationId = (SELECT LocationId FROM LOCATION WHERE Name ='SF Bay Area'                  )), 6    , 0.75  ,'2020-03-13', 1),
 ((SELECT BranchId FROM BRANCH WHERE CompanyId = (SELECT CompanyId FROM COMPANY WHERE Name = 'Tamara Mellon') AND LocationId = (SELECT LocationId FROM LOCATION WHERE Name ='Los Angeles'                )), 20   , 0.4   ,'2020-03-12', 90);
-                                                                                                                                                                             
+                                                                                                                                                                            

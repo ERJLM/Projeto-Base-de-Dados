@@ -1,0 +1,11 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Industry with the most Layoffs in the World:<br>{{ industry.Name }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<p>
+    <b>Total Layoffs: </b>{{ industry.N }}
+  </p> 
+{% endblock %}

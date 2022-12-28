@@ -221,3 +221,28 @@ def list_country():
       FROM COUNTRY
     ''').fetchall()
     return render_template('country-list.html', countrys=countrys)
+
+
+
+
+# OTHER 3 ENDPOINTS
+@APP.route('/mostlayoffs/all/')
+def list_most_company():
+    company = db.execute('''
+      SELECT COMPANY.CompanyId,COMPANY.Name,BRANCH.BranchId,COUNT(LAYOFF.LayoffId) AS N FROM BRANCH JOIN LAYOFF USING(BranchId) JOIN COMPANY USING(CompanyId) JOIN LOCATION USING(LocationId) JOIN COUNTRY USING(CountryId) GROUP BY BRANCH.BranchId ORDER BY N DESC LIMIT 1
+    ''').fetchone()
+    return render_template('custom.html', company=company)
+
+@APP.route('/mostlayoffs/month/')
+def list_most_month():
+    month = db.execute('''
+      SELECT MONTH(LAYOFF.Date) AS Name,COUNT(LAYOFF.LayoffId) AS N FROM LAYOFF GROUP BY MONTH(LAYOFF.Date) ORDER BY N DESC LIMIT 1
+    ''').fetchone()
+    return render_template('customMonth.html', month=month)
+
+@APP.route('/mostlayoffs/industry/')
+def list_most_industry():
+    industry = db.execute('''
+      SELECT INDUSTRY.Name,COUNT(LAYOFF.LayoffId) AS N FROM LAYOFF JOIN BRANCH USING(BranchId) JOIN COMPANY USING(CompanyId) JOIN COMPANY_INDUSTRY USING(CompanyId) JOIN INDUSTRY USING(IndustryId) GROUP BY INDUSTRY.Name ORDER BY N DESC LIMIT 1
+    ''').fetchone()
+    return render_template('customIndustry.html', industry=industry)
