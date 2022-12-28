@@ -42,13 +42,9 @@ CREATE TABLE COMPANY (
 DROP TABLE IF EXISTS `COMPANY_INDUSTRY`;
 
 CREATE TABLE COMPANY_INDUSTRY (
-  `CompanyId` int(11) NOT NULL,
-  `IndustryId` int(11) NOT NULL,
-   PRIMARY KEY (`CompanyId`,`IndustryId`),
-   
-   CONSTRAINT `company_industry_ibfk_1` FOREIGN KEY (`CompanyId`) REFERENCES `COMPANY` (`CompanyId`) ON UPDATE CASCADE,
-   CONSTRAINT `company_industry_ibfk_2` FOREIGN KEY (`IndustryId`) REFERENCES `INDUSTRY` (`IndustryId`) ON UPDATE CASCADE  
-  );
+  `CompanyId` int(11),
+  `IndustryId` int(11)
+ );
 
 DROP TABLE IF EXISTS `BRANCH`;
 
