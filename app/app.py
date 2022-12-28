@@ -25,3 +25,80 @@ def database():
     industry=list(db.execute("SELECT COUNT(*) FROM INDUSTRY"))
     lupdate=list(db.execute("SELECT MAX(Date) FROM LAYOFF"))
     return render_template('database.html',company=company[0].get('COUNT(*)'),layoff=layoff[0].get('COUNT(*)'),industry=industry[0].get('COUNT(*)'),lupdate=lupdate[0].get('MAX(Date)'))
+
+@APP.route('/search/company/<expr>/')
+def search_movie(expr):
+  search = { 'expr': expr }
+  expr = '%' + expr + '%'
+  movies = db.execute(
+      ''' 
+      SELECT MovieId, Title
+      FROM MOVIE 
+      WHERE Title LIKE %s
+      ''', expr).fetchall()
+  return render_template('movie-search.html',
+           search=search,movies=movies)
+
+# Main Layoff
+@APP.route('/layoff/')
+def list_actors():
+    layoffs = db.execute('''
+      SELECT LayoffId,
+            BranchId,
+            FundsRaised,
+            WorkersLaid,
+            Percentage,
+            Date 
+      FROM LAYOFF
+    ''').fetchall()
+    return render_template('layoff-list.html', layoffs=layoffs)
+
+@APP.route('/layoff/<int:id>/')
+def get_layoff(id):
+  layoff = db.execute(
+      '''
+      SELECT LayoffId,
+            BranchId,
+            FundsRaised,
+            WorkersLaid,
+            Percentage,
+            Date 
+      FROM LAYOFF 
+      WHERE LayoffId = %s
+      ''', id).fetchone()
+
+  if layoff is None:
+     abort(404, 'Layoff id {} does not exist.'.format(id))
+
+  company = db.execute(
+      '''
+      SELECT CompanyId,Name 
+      FROM COMPANY
+      JOIN BRANCH USING(CompanyId)
+      JOIN LAYOFF USING(BranchId)
+      WHERE LayoffId = %s 
+      ''', id).fetchall()
+
+  branches = db.execute(
+      '''
+      SELECT BranchId FROM BRANCH WHERE
+      CompanyId=(
+      SELECT CompanyId 
+      FROM COMPANY
+      JOIN BRANCH USING(CompanyId)
+      JOIN LAYOFF USING(BranchId)
+      WHERE LayoffId = %s)
+      ''', id).fetchall()
+  industries = db.execute(
+      '''
+      SELECT INDUSTRY.Name 
+      FROM INDUSTRY
+      JOIN COMPANY_INDUSTRY USING(IndustryId)
+      JOIN COMPANY USING(CompanyId)
+      JOIN BRANCH USING(CompanyId)
+      JOIN LAYOFF USING(BranchId)
+      WHERE LayoffId = %s 
+      ''', id).fetchall()
+
+  return render_template('layoff.html', 
+           layoff=layoff, company=company,branches=branches,industries=industries)

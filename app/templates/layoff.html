@@ -1,0 +1,37 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}<h1>Layoff Search</h1> {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Layoff info</h2>
+  <p>
+    <b>LayoffId: </b>{{ layoff.LayoffId }}
+  </p>
+  <p>
+    <b>BranchId: </b>{{ layoff.BranchId }}
+  </p>
+  <p>
+    <b>WorkersLaid: </b>{{ layoff.WorkersLaid }}
+  </p>
+  <p>
+    <b>Percentage: </b>{{ layoff.Percentage }}
+  </p>
+  <p>
+    <b>Date: </b>{{ layoff.Date }}
+  </p>
+    <h2>Company:
+    {% for g in company %}      
+    <a href="/company/{{ g.CompanyId }}">{{ g.Name }}</a></h2>
+    {% endfor %}
+    <h2>All Company Branch(es):
+    {% for a in branches %}      
+    <a href="/branch/{{ a.BranchId }}">{{ a.BranchId }}</a> </h2>
+    {% endfor %}
+    <h2>Industry(s):
+    {% for s in industries %}      
+    <a href="/industry/{{ s.IndustryId }}">{{ s.Name }}</a> </h2>
+    {% endfor %}
+  
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Layoffs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-dark table-hover table-bordered"> 
+  <tr>
+    <th scope="col"><b>LayoffId</b></th>
+    <th scope="col"><b>BranchId</b></th>
+    <th scope="col"><b>WorkersLaid</b></th>
+    <th scope="col"><b>Percentage</b></th>
+    <th scope="col"><b>Date</b></th>
+   </tr>
+   
+  {% for layoff in layoffs %}
+    <tr>
+      <th scope="row"><a href="/layoff/{{ layoff.LayoffId }}">{{ layoff.LayoffId }}</a></th>
+      <td>{{ layoff.BranchId }}</td>
+      <td>{{ layoff.WorkersLaid }}</td>
+      <td>{{ layoff.Percentage }}</td>
+      <td>{{ layoff.Date }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
