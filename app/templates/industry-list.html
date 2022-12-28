@@ -1,0 +1,21 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Industries{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-dark table-hover table-bordered"> 
+  <tr>
+    <th scope="col"><b>IndustryId</b></th>
+    <th scope="col"><b>Name</b></th>
+   </tr>
+   
+  {% for industry in industrys %}
+    <tr>
+      <th scope="row">{{ industry.IndustryId }}</th>
+      <td>{{ industry.Name }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

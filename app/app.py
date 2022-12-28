@@ -158,6 +158,15 @@ def list_branch():
     return render_template('branch-list.html', branchs=branchs)
 
   # Industry
+@APP.route('/industry/')
+def list_idustry():
+    industrys = db.execute('''
+      SELECT IndustryId,
+            Name
+      FROM INDUSTRY
+    ''').fetchall()
+    return render_template('industry-list.html', industrys=industrys)
+
 @APP.route('/industry/<int:id>/')
 def get_industry(id):
   industry = db.execute(
