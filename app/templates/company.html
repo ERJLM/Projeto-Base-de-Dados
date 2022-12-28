@@ -1,0 +1,25 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ company.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Company info</h2>
+  <p>
+    <b>CompanyId: </b>{{ company.CompanyId }}
+  </p>
+  <p>
+    <b>Name: </b>{{ company.Name }}
+  </p>
+  <p>
+    <h2>All Company Branch(es):
+        {% for a in branches %}      
+        <a href="/branch/{{ a.BranchId }}">{{ a.BranchId }}</a> </h2>
+        {% endfor %}
+        <h2>Industry(s):
+        {% for s in industries %}      
+        <a href="/industry/{{ s.IndustryId }}">{{ s.IndustryId }}</a> </h2>
+        {% endfor %}
+  
+{% endblock %}

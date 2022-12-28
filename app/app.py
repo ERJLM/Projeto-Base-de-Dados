@@ -26,22 +26,10 @@ def database():
     lupdate=list(db.execute("SELECT MAX(Date) FROM LAYOFF"))
     return render_template('database.html',company=company[0].get('COUNT(*)'),layoff=layoff[0].get('COUNT(*)'),industry=industry[0].get('COUNT(*)'),lupdate=lupdate[0].get('MAX(Date)'))
 
-@APP.route('/search/company/<expr>/')
-def search_movie(expr):
-  search = { 'expr': expr }
-  expr = '%' + expr + '%'
-  movies = db.execute(
-      ''' 
-      SELECT MovieId, Title
-      FROM MOVIE 
-      WHERE Title LIKE %s
-      ''', expr).fetchall()
-  return render_template('movie-search.html',
-           search=search,movies=movies)
-
-# Main Layoff
+# MAIN ENDPOINTS
+# Layoff
 @APP.route('/layoff/')
-def list_actors():
+def list_layoff():
     layoffs = db.execute('''
       SELECT LayoffId,
             BranchId,
@@ -91,7 +79,7 @@ def get_layoff(id):
       ''', id).fetchall()
   industries = db.execute(
       '''
-      SELECT INDUSTRY.Name 
+      SELECT INDUSTRY.IndustryId,INDUSTRY.Name 
       FROM INDUSTRY
       JOIN COMPANY_INDUSTRY USING(IndustryId)
       JOIN COMPANY USING(CompanyId)
@@ -102,3 +90,134 @@ def get_layoff(id):
 
   return render_template('layoff.html', 
            layoff=layoff, company=company,branches=branches,industries=industries)
+
+# Company
+@APP.route('/company/<int:id>/')
+def get_company(id):
+  company = db.execute(
+      '''
+      SELECT CompanyId,
+            Name 
+      FROM COMPANY
+      WHERE CompanyId = %s
+      ''', id).fetchone()
+
+  if company is None:
+     abort(404, 'Company id {} does not exist.'.format(id))
+
+  branches = db.execute(
+      '''
+      SELECT BranchId FROM BRANCH WHERE
+      CompanyId = %s
+      ''', id).fetchall()
+  industries = db.execute(
+      '''
+      SELECT INDUSTRY.IndustryId,INDUSTRY.Name 
+      FROM INDUSTRY
+      JOIN COMPANY_INDUSTRY USING(IndustryId)
+      WHERE CompanyId = %s 
+      ''', id).fetchall()
+
+  return render_template('company.html', 
+           company=company,branches=branches,industries=industries)
+
+@APP.route('/company/')
+def list_company():
+    companys = db.execute('''
+      SELECT CompanyId,
+            Name
+      FROM COMPANY
+    ''').fetchall()
+    return render_template('company-list.html', companys=companys)
+
+
+# Branch
+@APP.route('/branch/<int:id>/')
+def get_branch(id):
+  branch = db.execute(
+      '''
+      SELECT BranchId,CompanyId,LocationId
+      FROM BRANCH
+      WHERE BranchId = %s
+      ''', id).fetchone()
+
+  if branch is None:
+     abort(404, 'Branch id {} does not exist.'.format(id))
+
+  return render_template('branch.html',branch=branch)
+
+@APP.route('/branch/')
+def list_branch():
+    branchs = db.execute('''
+      SELECT BranchId,
+            LocationId,
+            CompanyId,
+            Headquarter
+      FROM BRANCH
+    ''').fetchall()
+    return render_template('branch-list.html', branchs=branchs)
+
+  # Industry
+@APP.route('/industry/<int:id>/')
+def get_industry(id):
+  industry = db.execute(
+      '''
+      SELECT IndustryId,Name
+      FROM INDUSTRY
+      WHERE IndustryId = %s
+      ''', id).fetchone()
+
+  if industry is None:
+     abort(404, 'Industry id {} does not exist.'.format(id))
+
+  return render_template('industry.html',industry=industry)
+
+  # Location
+@APP.route('/location/<int:id>/')
+def get_location(id):
+  location = db.execute(
+      '''
+      SELECT LocationId,Name,CountryId
+      FROM LOCATION
+      WHERE LocationId = %s
+      ''', id).fetchone()
+
+  if location is None:
+     abort(404, 'Location id {} does not exist.'.format(id))
+
+  return render_template('location.html',location=location)
+
+@APP.route('/location/')
+def list_location():
+    locations = db.execute('''
+      SELECT LocationId,
+            CountryId
+      FROM LOCATION
+    ''').fetchall()
+    return render_template('location-list.html', locations=locations)
+
+  
+
+  # Country
+@APP.route('/country/<int:id>/')
+def get_country(id):
+  country = db.execute(
+      '''
+      SELECT CountryId,Name
+      FROM COUNTRY
+      WHERE CountryId = %s
+      ''', id).fetchone()
+
+  if country is None:
+     abort(404, 'Country id {} does not exist.'.format(id))
+
+  return render_template('country.html',country=country)
+
+@APP.route('/country/')
+def list_country():
+    countrys = db.execute('''
+      SELECT Name,
+            CountryId
+      FROM COUNTRY
+    ''').fetchall()
+    return render_template('country-list.html', countrys=countrys)

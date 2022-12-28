@@ -1,0 +1,20 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ branch.BranchId }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Branch info</h2>
+  <p>
+    <b>BranchId: </b>{{ branch.BranchId }}
+  </p>
+  <p>
+    <b>CompanyId: </b>{{ branch.CompanyId }}
+  </p>
+  <p>LocationId: 
+    <a href="/location/{{ branch.LocationId }}">{{ branch.LocationId }}</a>
+  </p>
+  <p>
+  
+{% endblock %}

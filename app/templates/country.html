@@ -1,0 +1,16 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ country.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Country info</h2>
+  <p>
+    <b>CountryId: </b>{{ country.CountryId }}
+  </p>
+  <p>
+    <b>Name: </b>{{ country.Name }}
+  </p>
+  
+{% endblock %}

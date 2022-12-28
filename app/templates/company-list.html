@@ -1,0 +1,21 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Companies{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-dark table-hover table-bordered"> 
+  <tr>
+    <th scope="col"><b>CompanyId</b></th>
+    <th scope="col"><b>Name</b></th>
+   </tr>
+   
+  {% for company in companys %}
+    <tr>
+      <th scope="row"><a href="/company/{{ company.CompanyId }}">{{ company.CompanyId }}</a></th>
+      <td>{{ company.Name }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

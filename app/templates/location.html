@@ -1,0 +1,19 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ location.Name }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Location info</h2>
+  <p>
+    <b>LocationId: </b>{{ location.LocationId }}
+  </p>
+  <p>
+    <b>Name: </b>{{ location.Name }}
+  </p>
+  <p>
+    <b>CountryId: </b><a href="/country/{{ location.CountryId }}">{{ location.CountryId }}</a>
+  </p>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Branches{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-dark table-hover table-bordered"> 
+  <tr>
+    <th scope="col"><b>BranchId</b></th>
+    <th scope="col"><b>CompanyId</b></th>
+    <th scope="col"><b>Headquarter</b></th>
+    <th scope="col"><b>LocationId</b></th>
+   </tr>
+   
+  {% for branch in branchs %}
+    <tr>
+      <th scope="row"><a href="/branch/{{ branch.BranchId }}">{{ branch.BranchId }}</a></th>
+      <td>{{ branch.CompanyId }}</td>
+      <td>{{ branch.Headquarter }}</td>
+      <td>{{ branch.LocationId }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}

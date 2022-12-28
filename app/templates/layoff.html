@@ -1,7 +1,7 @@
 {% extends 'consbase.html' %}
 
 {% block header %}
-  <h1>{% block title %}<h1>Layoff Search</h1> {% endblock %}</h1>
+  <h1>{% block title %}<h1>Layoff Single Row</h1> {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
@@ -31,7 +31,7 @@
     {% endfor %}
     <h2>Industry(s):
     {% for s in industries %}      
-    <a href="/industry/{{ s.IndustryId }}">{{ s.Name }}</a> </h2>
+    <a href="/industry/{{ s.IndustryId }}">{{ s.IndustryId }}</a> </h2>
     {% endfor %}
   
 {% endblock %}

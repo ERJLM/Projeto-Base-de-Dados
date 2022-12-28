@@ -1,0 +1,21 @@
+{% extends 'consbase.html' %}
+
+{% block header %}
+  <h1>{% block title %}Countries{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table class="table table-dark table-hover table-bordered"> 
+  <tr>
+    <th scope="col"><b>CountryId</b></th>
+    <th scope="col"><b>Name</b></th>
+   </tr>
+   
+  {% for country in countrys %}
+    <tr>
+      <th scope="row"><a href="/country/{{ country.CountryId }}">{{ country.CountryId }}</a></th>
+      <td>{{ country.Name }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
